@@ -6,7 +6,8 @@ Este script foi inicialmente criado para mostrar à entusiastas do PUG-PHB como 
 ## Como usar?
 
 - `$ git clone git@github.com:mazulo/pymanga.git`
-- Entre dentro da pasta pymanga, e em seguida;
+
+Entre dentro da pasta pymanga, e em seguida:
 - `$ pip install -r requirements.txt`
 
 Se o Python 3.x for o padrão do seu S.O:
