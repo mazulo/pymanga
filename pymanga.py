@@ -1,10 +1,18 @@
 import argparse
 import urllib.request
 import time
+import os
 
 from bs4 import BeautifulSoup
 
 from configs import BASE_URL_ONE_PIECE, HEADER_ONE_PIECE
+
+def create_folder(chapter):
+    if not os.path.exists('capitulo-{}'.format(chapter)):
+        print('Diretório já existente')
+        return False
+    os.mkdir('capitulo-{}'.format(chapter))
+    return True
 
 
 def download_chapter(chapter):
@@ -57,7 +65,7 @@ def download_chapter(chapter):
             # write the content of request into file
             f.write(content)
         print('Arquivo salvo com sucesso! - {}'.format(filename))
-        # sleep for 5 seconds, to avoid problems
+        # sleep for 5 seconds, to avoid connection refused
         time.sleep(5)
     return
 
