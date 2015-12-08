@@ -11,10 +11,12 @@ Entre dentro da pasta pymanga, e em seguida:
 - `$ pip install -r requirements.txt`
 
 Se o Python 3.x for o padrão do seu S.O:
-- `$ python pymanga.py --manga "One Piece" --capitulo "400"`
+- `$ python pymanga.py --manga "One Piece" --chapter "400"`
 
 Senão:
 - `python3 pymanga.py [...]`
+
+> Até o momento o script só baixa mangás do One Piece. Mas estarei colocando suporte para outros títulos em breve.
 
 That's it. :)
 
