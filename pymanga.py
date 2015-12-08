@@ -1,18 +1,21 @@
 import argparse
-import urllib.request
-import time
 import os
+import time
+import urllib.request
 
 from bs4 import BeautifulSoup
 
 from configs import BASE_URL_ONE_PIECE, HEADER_ONE_PIECE
 
+
 def create_folder(chapter):
-    if not os.path.exists('capitulo-{}'.format(chapter)):
+    folder = 'capitulo-{}'.format(chapter)
+    try:
+        os.mkdir(folder)
+        return folder
+    except OSError:
         print('Diretório já existente')
-        return False
-    os.mkdir('capitulo-{}'.format(chapter))
-    return True
+        return folder
 
 
 def download_chapter(chapter):
@@ -44,6 +47,7 @@ def download_chapter(chapter):
     print('Número de imagens:  ', number_img)
 
     final = ''
+    folder = create_folder(chapter)
     for i in range(1, number_img+1):
         # check if i is between 1 and 9
         if i in range(1, 10):
@@ -59,14 +63,14 @@ def download_chapter(chapter):
         # create another request, this time to URL image using headers to this
         # specific site
         req = urllib.request.Request(url, headers=HEADER_ONE_PIECE)
-        with open(filename, 'wb') as f:
+        with open(os.path.join(folder, filename), 'wb') as f:
             # make request for the image
             content = urllib.request.urlopen(req).read()
             # write the content of request into file
             f.write(content)
         print('Arquivo salvo com sucesso! - {}'.format(filename))
         # sleep for 5 seconds, to avoid connection refused
-        time.sleep(5)
+        time.sleep(3)
     return
 
 
