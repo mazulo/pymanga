@@ -49,6 +49,8 @@ def download_chapter(chapter):
     final = ''
     folder = create_folder(chapter)
     for i in range(1, number_img+1):
+        # sleep for 5 seconds, to avoid connection refused
+        time.sleep(3)
         # check if i is between 1 and 9
         if i in range(1, 10):
             # if so concatenate the 0 plus i
@@ -60,17 +62,19 @@ def download_chapter(chapter):
         else:
             url = manga_url+'-{}.jpg'.format(i)
             filename = 'capitulo-{}.jpg'.format(i)
-        # create another request, this time to URL image using headers to this
-        # specific site
-        req = urllib.request.Request(url, headers=HEADER_ONE_PIECE)
+        try:
+            # create another request, this time to URL image using headers to
+            # this specific site
+            req = urllib.request.Request(url, headers=HEADER_ONE_PIECE)
+            # try to make request for the image
+            content = urllib.request.urlopen(req)
+        except urllib.error.HTTPError:
+            print('Arquivo {} indisponível'.format(filename))
+            continue
         with open(os.path.join(folder, filename), 'wb') as f:
-            # make request for the image
-            content = urllib.request.urlopen(req).read()
             # write the content of request into file
-            f.write(content)
-        print('Arquivo salvo com sucesso! - {}'.format(filename))
-        # sleep for 5 seconds, to avoid connection refused
-        time.sleep(3)
+            f.write(content.read())
+            print('Arquivo salvo com sucesso! - {}'.format(filename))
     return
 
 
