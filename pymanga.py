@@ -1,5 +1,6 @@
 import argparse
 import os
+import re
 import time
 import urllib.request
 
@@ -63,10 +64,17 @@ def download_chapter(chapter):
             url = manga_url+'-{}.jpg'.format(i)
             filename = 'capitulo-{}.jpg'.format(i)
         try:
+            # create a regex pattern to get the host from the URL image
+            regex = re.compile('(^http:\/\/.*\.centraldemangas\.com\.br)')
+            host = regex.search(url).group()
+            # update dict
+            HEADER_ONE_PIECE.update(host=host)
+            print('host:', HEADER_ONE_PIECE['host'])
             # create another request, this time to URL image using headers to
             # this specific site
             req = urllib.request.Request(url, headers=HEADER_ONE_PIECE)
             # try to make request for the image
+            print(url)
             content = urllib.request.urlopen(req)
         except urllib.error.HTTPError:
             print('Arquivo {} indisponível'.format(filename))
