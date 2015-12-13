@@ -69,7 +69,7 @@ def download_chapter(chapter):
             host = regex.search(url).group()
             # update dict
             HEADER_ONE_PIECE.update(host=host)
-            print('host:', HEADER_ONE_PIECE['host'])
+            # print('host:', HEADER_ONE_PIECE['host'])
             # create another request, this time to URL image using headers to
             # this specific site
             req = urllib.request.Request(url, headers=HEADER_ONE_PIECE)
