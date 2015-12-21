@@ -1,5 +1,7 @@
 # PyMangá
 
+> Nesta branch teremos a versão desenvolvida para cunhos de apresentação. Na master ficará a versão otimizada e que será disponibilizada no Pypi.
+
 Uma maneira simples e divertida de baixar as imagens do seu mangá favorito.
 Este script foi inicialmente criado para mostrar à entusiastas do PUG-PHB como usar Python para automatizar tarefas simples e corriqueiras.
 
