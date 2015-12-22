@@ -2,11 +2,11 @@ import argparse
 import os
 import re
 import time
-import urllib.request
+import requests
 
 from bs4 import BeautifulSoup
 
-from configs import BASE_URL_ONE_PIECE, HEADER_ONE_PIECE
+from conf_one_piece import BASE_URL_ONE_PIECE, HEADER_ONE_PIECE
 
 
 def create_folder(chapter):
@@ -22,10 +22,8 @@ def create_folder(chapter):
 def download_chapter(chapter):
     # create the correct url with the chapter
     url = BASE_URL_ONE_PIECE.format(chapter)
-    # create an abstraction of a URL Request
-    req = urllib.request.Request(url)
     # makes the request, and assign the content of the response in `content`
-    content = urllib.request.urlopen(req).read()
+    content = requests.get(url).content
     # create the BeautifulSoup object from the content, using 'html.parse'
     # to create the tree HTML
     soup = BeautifulSoup(content, 'html.parser')
@@ -72,16 +70,16 @@ def download_chapter(chapter):
             # print('host:', HEADER_ONE_PIECE['host'])
             # create another request, this time to URL image using headers to
             # this specific site
-            req = urllib.request.Request(url, headers=HEADER_ONE_PIECE)
             # try to make request for the image
             print(url)
-            content = urllib.request.urlopen(req)
+            content = requests.get(url, headers=HEADER_ONE_PIECE)
+            # content = urllib.request.urlopen(req)
         except urllib.error.HTTPError:
             print('Arquivo {} indisponível'.format(filename))
             continue
         with open(os.path.join(folder, filename), 'wb') as f:
             # write the content of request into file
-            f.write(content.read())
+            f.write(content.content)
             print('Arquivo salvo com sucesso! - {}'.format(filename))
     return
 
