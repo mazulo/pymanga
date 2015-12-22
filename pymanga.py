@@ -74,7 +74,7 @@ def download_chapter(chapter):
             print(url)
             content = requests.get(url, headers=HEADER_ONE_PIECE)
             # content = urllib.request.urlopen(req)
-        except urllib.error.HTTPError:
+        except requests.RequestException:
             print('Arquivo {} indisponível'.format(filename))
             continue
         with open(os.path.join(folder, filename), 'wb') as f:
