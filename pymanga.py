@@ -3,6 +3,7 @@ import os
 import re
 import time
 import requests
+import shutil
 
 from bs4 import BeautifulSoup
 
@@ -65,21 +66,24 @@ def download_chapter(chapter):
             # create a regex pattern to get the host from the URL image
             regex = re.compile('(^http:\/\/.*\.centraldemangas\.com\.br)')
             host = regex.search(url).group()
+            print('host da regex:', host)
             # update dict
             HEADER_ONE_PIECE.update(host=host)
-            # print('host:', HEADER_ONE_PIECE['host'])
+            print('Novo host:', HEADER_ONE_PIECE['host'])
             # create another request, this time to URL image using headers to
             # this specific site
             # try to make request for the image
             print(url)
-            content = requests.get(url, headers=HEADER_ONE_PIECE)
+            content = requests.get(url, headers=HEADER_ONE_PIECE, stream=True)
             # content = urllib.request.urlopen(req)
         except requests.RequestException:
             print('Arquivo {} indisponível'.format(filename))
             continue
         with open(os.path.join(folder, filename), 'wb') as f:
+            # import pdb; pdb.set_trace()
+            content.raw.decode_content = True
             # write the content of request into file
-            f.write(content.content)
+            shutil.copyfileobj(content.raw, f)
             print('Arquivo salvo com sucesso! - {}'.format(filename))
     return
 
