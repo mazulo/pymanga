@@ -6,7 +6,7 @@ import requests
 
 from bs4 import BeautifulSoup
 
-from conf_one_piece import BASE_URL_ONE_PIECE, HEADER_ONE_PIECE
+from conf import BASE_URL_ONE_PIECE, HEADER_ONE_PIECE
 
 
 def create_folder(chapter):
