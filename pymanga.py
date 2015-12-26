@@ -6,7 +6,7 @@ import urllib.request
 
 from bs4 import BeautifulSoup
 
-from configs import BASE_URL_ONE_PIECE, HEADER_ONE_PIECE
+from conf_one_piece import BASE_URL_ONE_PIECE, HEADER_ONE_PIECE
 
 
 def create_folder(chapter):
