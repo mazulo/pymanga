@@ -23,6 +23,7 @@ def create_folder(chapter):
 def download_chapter(chapter):
     # create the correct url with the chapter
     url = BASE_URL_ONE_PIECE.format(chapter)
+    HEADER_ONE_PIECE.update(referer=url)
     # makes the request, and assign the content of the response in `content`
     content = requests.get(url).content
     # create the BeautifulSoup object from the content, using 'html.parse'
