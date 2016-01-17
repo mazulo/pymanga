@@ -1,6 +1,6 @@
 # PyMangá
 
-> Para visualizar a versão desenvolvida para apresentações, [clique aqui](https://github.com/mazulo/pymanga/tree/dev)
+> Para visualizar a versão desenvolvida usando somente a stdlib, [clique aqui](https://github.com/mazulo/pymanga/tree/dev)
 
 Uma maneira simples e divertida de baixar as imagens do seu mangá favorito.
 Este script foi inicialmente criado para mostrar à entusiastas do PUG-PHB como usar Python para automatizar tarefas simples e corriqueiras.
