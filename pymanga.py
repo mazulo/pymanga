@@ -49,19 +49,19 @@ def download_chapter(chapter):
 
     final = ''
     folder = create_folder(chapter)
-    for i in range(1, number_img+1):
+    for i in range(1, number_img + 1):
         # sleep for 5 seconds, to avoid connection refused
         time.sleep(3)
         # check if i is between 1 and 9
         if i in range(1, 10):
             # if so concatenate the 0 plus i
-            final = '0'+str(i)
+            final = '0' + str(i)
             # concatenate this final with manga_url to create the URL image
-            url = manga_url+'-{}.jpg'.format(final)
+            url = manga_url + '-{}.jpg'.format(final)
             # create the filename
             filename = 'capitulo-{}.jpg'.format(final)
         else:
-            url = manga_url+'-{}.jpg'.format(i)
+            url = manga_url + '-{}.jpg'.format(i)
             filename = 'capitulo-{}.jpg'.format(i)
         try:
             # create a regex pattern to get the host from the URL image
@@ -104,6 +104,7 @@ def main():
 
     if args.manga and args.chapter:
         download_chapter(args.chapter)
+
 
 if __name__ == '__main__':
     main()
