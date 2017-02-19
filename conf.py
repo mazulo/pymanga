@@ -1,4 +1,4 @@
-BASE_URL_ONE_PIECE = 'http://mangaop.info/capitulos/{}#1'
+BASE_URL_ONE_PIECE = 'http://op.centraldemangas.org/capitulos/{}#1'
 
 HEADER_ONE_PIECE = {
     'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 \
