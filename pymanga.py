@@ -65,7 +65,7 @@ def download_chapter(chapter):
             filename = 'capitulo-{}.jpg'.format(i)
         try:
             # create a regex pattern to get the host from the URL image
-            regex = re.compile('(^http:\/\/.*\.centraldemangas\.com\.br)')
+            regex = re.compile(r'(^http:\/\/.*\.centraldemangas\.com\.br)')
             host = regex.search(url).group()
             print('host da regex:', host)
             # update dict
